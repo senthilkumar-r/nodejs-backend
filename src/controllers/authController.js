@@ -31,7 +31,7 @@ const registerUser = async (req, res) => {
     });
 
     // Generate JWT token
-    const token = generateToken({ user, res });
+    const token = generateToken(user, res);
 
     res.status(201).json({
       status: "success",
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Invalid email or password" });
     }
     // Generate JWT token
-    const token = generateToken({ user, res });
+    const token = generateToken(user, res);
 
     res.status(200).json({
       status: "success",
