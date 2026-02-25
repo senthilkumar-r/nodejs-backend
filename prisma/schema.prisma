@@ -3,6 +3,7 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 enum WatchlistStatus {
   PLANNED
   WATCHING
@@ -26,20 +27,24 @@ model User {
   password  String
   createdAt DateTime @default(now())
 
-  watchlists Watchlist[]
+  watchlists WatchlistItems[]
 }
 
 model Movie {
   id          String   @id @default(uuid())
   title       String
-  description String
-  releaseDate DateTime
+  overview    String
+  releaseYear Int
+  genre       String[]
+  runtime     Int
+  posterUrl  String
+  createdBy   String
   createdAt   DateTime @default(now())
 
-  watchlists Watchlist[]
+  watchlists WatchlistItems[]
 }
 
-model Watchlist {
+model WatchlistItems {
   id        String          @id @default(uuid())
   userId    String
   movieId   String
